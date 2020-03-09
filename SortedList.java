@@ -15,66 +15,56 @@ public class SortedList<E> implements ListInterface<E> {
 		tail = null;
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
+	@SuppressWarnings("unchecked")
 	public void add(E element) {
 		
 		DLLNode<E> newNode = new DLLNode<E>(element);
-		
-		//Do this if list is empty
-		if(isEmpty()) {
-			head = newNode;
-			tail = head;
+	
+		switch(size()) {	
+			case 0:
+				head = newNode;
+				break;
+			case 1:
+				if(((Comparable<E>)element).compareTo(head.getInfo()) > 0) {
+					head.setNext(newNode);
+					newNode.setPrev(head);
+					tail = newNode;
+				} else {
+					newNode.setNext(head);
+					head.setPrev(newNode);
+					tail = head;
+					head = newNode;
+				}
+				break;	
+			default:
+				DLLNode<E> ptr = head;
+				while(ptr.getNext() != null) {
+					if (((Comparable<E>)element).compareTo(ptr.getInfo()) > 0) {
+						ptr = ptr.getNext();
+						continue;
+					}
+					break;	
+				}
+				if(ptr.getPrev() == null) {
+					newNode.setNext(ptr);
+					ptr.setPrev(newNode);
+					head = newNode;
+				} else if (ptr.getNext() == null){
+					newNode.setPrev(ptr);
+					ptr.setNext(newNode);
+					tail = newNode;
+				} else {
+					ptr.getPrev().setNext(newNode);
+					newNode.setPrev(ptr.getPrev());
+					newNode.setNext(ptr);
+					ptr.setPrev(newNode);
+				}
+			}
+			
 			resetIterator();
 			resetBackIterator();
 			return;
-		}
-		
-		//Do this if list has 1 element
-		if(size() == 1) {
-			if(((Comparable<E>)element).compareTo(head.getInfo()) > 0) {
-				head.setNext(newNode);
-				newNode.setPrev(head);
-				tail = newNode;
-				resetIterator();
-				resetBackIterator();
-				return;	
-			} else {
-				newNode.setNext(head);
-				head.setPrev(newNode);
-				head = newNode;
-				tail = newNode.getNext();
-				resetIterator();
-				resetBackIterator();
-				return;
-			}
-		}
-		
-		//do this if list has more than 1 element
-		DLLNode<E> ptr = head;
-		while(ptr.getNext() != null) {
-			if (((Comparable<E>)element).compareTo(ptr.getInfo()) > 0) {
-				ptr = ptr.getNext();
-				continue;
-			}
-			break;	
-		}
-		if(ptr.getPrev() == null) {
-			newNode.setNext(ptr);
-			ptr.setPrev(newNode);
-			head = newNode;
-		} else if (ptr.getNext() == null){
-			newNode.setPrev(ptr);
-			ptr.setNext(newNode);
-			tail = newNode;
-		} else {
-			ptr.getPrev().setNext(newNode);
-			newNode.setPrev(ptr.getPrev());
-			newNode.setNext(ptr);
-			ptr.setPrev(newNode);
-		}
-		resetIterator();
-		resetBackIterator();
 	}
 
 	@Override
