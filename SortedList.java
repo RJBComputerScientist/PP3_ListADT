@@ -62,9 +62,9 @@ public class SortedList<E> implements ListInterface<E> {
 				}
 			}
 			
-			resetIterator();
-			resetBackIterator();
-			return;
+		resetIterator();
+		resetBackIterator();
+		return;
 	}
 
 	@Override
