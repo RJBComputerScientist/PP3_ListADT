@@ -130,6 +130,7 @@ public class SortedList<E> implements ListInterface<E> {
 		return element;
 	}
 	
+	@Override
 	public String toString() {
 		String str = "-HEAD-";
 		DLLNode<E> ptr = head;
