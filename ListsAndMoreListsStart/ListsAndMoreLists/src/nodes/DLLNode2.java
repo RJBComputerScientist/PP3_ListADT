@@ -1,7 +1,7 @@
 package nodes;
 
-public class DLLNode<E> {
-	//THIS IS THE RED ONE FROM THE SCREENCAP, this was the one you sent over canvas
+public class DLLNode2<E> {
+	//THIS IS THE GREEN ONE FROM THE SCREENCAP, which was in the root directory of the git repo, master branch
 	private E info;
 	private DLLNode<E> next;
 	private DLLNode<E> prev;
@@ -12,29 +12,27 @@ public class DLLNode<E> {
 		prev = null;
 	}
 	
-	public void setinfo(E info) {
-		this.info = info;
-		
-	}
-	
 	public E getInfo() {
 		return info;
 	}
 	
-	public void setNext(DLLNode<E> reference) {
-		this.next = reference;
+	public void setInfo(E info) {
+		this.info = info;
 	}
 	
 	public DLLNode<E> getNext() {
 		return next;
 	}
 	
-	public void setPrev(DLLNode<E> reference) {
-		this.next = reference;
-	}
-	
 	public DLLNode<E> getPrev() {
 		return prev;
 	}
-
+	
+	public void setNext(DLLNode<E> next) {
+		this.next = next;
+	}
+	
+	public void setPrev(DLLNode<E> prev) {
+		this.prev = prev;
+	}
 }
