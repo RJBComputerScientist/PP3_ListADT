@@ -1,3 +1,4 @@
+/*
 package nodes;
 
 public class DLLNode2<E> {
@@ -36,3 +37,4 @@ public class DLLNode2<E> {
 		this.prev = prev;
 	}
 }
+*/
