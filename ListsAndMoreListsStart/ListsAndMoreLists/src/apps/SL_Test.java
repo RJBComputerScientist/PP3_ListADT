@@ -19,7 +19,7 @@ public class SL_Test {
         primes.add(43);  
         primes.add(47);
         primes.add(11);  
-        primes.add(13);  
+       /* primes.add(13);  
         primes.add(17);  
         primes.add(19);
         primes.add(107);
@@ -33,7 +33,7 @@ public class SL_Test {
         primes.add(97);  
         primes.add(101); 
         primes.add(103);
-        primes.add(71);  
+        primes.add(71);  */
         
         System.out.println(primes.size());
   

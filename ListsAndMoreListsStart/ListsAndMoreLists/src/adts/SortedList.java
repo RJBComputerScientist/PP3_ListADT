@@ -9,6 +9,8 @@ public class SortedList<E> implements ListInterface<E> {
 	protected DLLNode<E> tail;
 	protected DLLNode<E> ipos; // guessing i stands for iterator and b for back iterator?
 	protected DLLNode<E> bpos;
+	protected boolean found;
+	protected int location;
 	
 	protected int numElements = 0;
 	
@@ -65,7 +67,7 @@ public class SortedList<E> implements ListInterface<E> {
 						ptr = ptr.getNext();
 						tempCtr--;
 						System.out.println("61 -------------------------------------------------------" + element);
-						continue;
+						//continue;
 					}
 					System.out.println("64 -------------------------------------------------------" + element);
 					break;	
@@ -137,8 +139,46 @@ public class SortedList<E> implements ListInterface<E> {
 
 	@Override
 	public E get(E element) {
-		// TODO Auto-generated method stub
-		return null;
+		DLLNode<E> ptr = head;
+		int tempCtr = numElements; //using this to count down and end the loop 
+		//while(ptr.getNext() != null) { //now theres an infinite loop here too, gonna try to fix this
+		while(tempCtr>=0) {
+			if (((Comparable<E>)element).compareTo(ptr.getInfo()) > 0) {
+				ptr = ptr.getNext();
+				tempCtr--;
+			}
+		
+		
+		find(element);
+		if (found)
+			return list[location];
+		else
+			return null;
+	}
+	
+	@Override
+	public void find(E target) {
+		found = false;
+		location = 0;
+		int low = 0;
+		int high = numElements - 1;
+		
+		while(low <= high) {
+			int mid = (low + high) / 2;
+			if (target.equals(list[mid])) {
+				found = true;
+				location = mid;
+				return;
+			} 
+			else {
+				if(((Comparable)target).compareTo(list[mid]) > 0) {
+					low = mid + 1;
+				}
+				else {
+					high = mid - 1;
+				}
+			}
+		}
 	}
 
 	@Override
