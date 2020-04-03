@@ -140,29 +140,57 @@ public class SortedList<E> implements ListInterface<E> {
 	@Override
 	public E get(E element) {
 		DLLNode<E> ptr = head;
+		E temp;
 		int tempCtr = numElements; //using this to count down and end the loop 
 		//while(ptr.getNext() != null) { //now theres an infinite loop here too, gonna try to fix this
-		while(tempCtr>=0) {
-			if (((Comparable<E>)element).compareTo(ptr.getInfo()) > 0) {
-				ptr = ptr.getNext();
-				tempCtr--;
-			}
+
 		
 		
 		find(element);
-		if (found)
-			return list[location];
-		else
-			return null;
+		if (found) {
+			while(tempCtr>=location) {
+				if (!element.equals(ptr.getInfo())) {
+					ptr = ptr.getNext();
+					tempCtr--;
+				} else {
+					temp = ptr.getInfo();
+					return temp;
+				}
+			}
+		}
+		//else {
+			temp = null;
+			return temp;
+	//	}
 	}
 	
-	@Override
+	
 	public void find(E target) {
 		found = false;
 		location = 0;
 		int low = 0;
 		int high = numElements - 1;
 		
+		//temporary find method for testing purposes, does not use binary search
+		//REPLACE LATER WHEN THE FIND METHOD IS DONE!
+		//THIS IS NOT FINALIZED!!!
+		DLLNode<E> ptr = head;
+		E temp;
+		int tempCtr = numElements; //using this to count down and end the loop 
+		//while(ptr.getNext() != null) { //now theres an infinite loop here too, gonna try to fix this
+		while(tempCtr>=0) {
+			if (!target.equals(ptr.getInfo())) {
+				ptr = ptr.getNext();
+				tempCtr--;
+				location++;
+			} else {
+				tempCtr = 0;
+				found = true;
+				//location = ptr.
+			}
+		}
+		
+		/*  example of binary search
 		while(low <= high) {
 			int mid = (low + high) / 2;
 			if (target.equals(list[mid])) {
@@ -176,9 +204,9 @@ public class SortedList<E> implements ListInterface<E> {
 				}
 				else {
 					high = mid - 1;
-				}
-			}
-		}
+				} 
+			} 
+		} */
 	}
 
 	@Override

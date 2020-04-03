@@ -35,6 +35,8 @@ public class SL_Test {
         primes.add(103);
         primes.add(71);  */
         
+        System.out.println("GETTING 47: " + primes.get(47) + "#################################");
+        
         System.out.println(primes.size());
   
         System.out.println(primes); 
