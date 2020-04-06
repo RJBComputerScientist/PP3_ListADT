@@ -1,7 +1,7 @@
 package nodes;
 
 public class DLLNode<E> {
-	//THIS IS THE RED ONE FROM THE SCREENCAP, this was the one you sent over canvas
+	
 	private E info;
 	private DLLNode<E> next;
 	private DLLNode<E> prev;
@@ -30,7 +30,7 @@ public class DLLNode<E> {
 	}
 	
 	public void setPrev(DLLNode<E> reference) {
-		this.next = reference;
+		this.prev = reference;
 	}
 	
 	public DLLNode<E> getPrev() {

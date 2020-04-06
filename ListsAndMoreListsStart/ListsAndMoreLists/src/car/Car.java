@@ -1,6 +1,6 @@
 package car;
 
-public class Car {
+public class Car implements Comparable<Car> {
 	
 	private String make;
 	private String model;
@@ -65,6 +65,47 @@ public class Car {
 		*/
 		System.out.println("\nBEEP!\n");
 	}
+	
+	@Override
+	public int compareTo(Car other) {
+		
+		return this.year - other.year;
+				
+		/*
+		if (this.year == other.year) {
+			return 0;
+		}
+		else {
+			if (this.year > other.year) {
+				return 1;
+			}
+			else {
+				return -1;
+			}
+		}
+		*/
+	}
+	
+	@Override
+	public boolean equals(Object other) {
+		boolean result = false;
+		if (other instanceof Car) {
+			Car otherCar = (Car) other;
+			if (this.year == otherCar.year) {
+				result = true;
+			}
+			else {
+				result = false;
+			}
+		}
+		return result;
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	public String toString() {
